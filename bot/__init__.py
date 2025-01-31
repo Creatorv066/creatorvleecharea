@@ -91,13 +91,13 @@ QBIT_NAME = environ.get('QBIT_NAME', 'qbittorrent-nox')
 FFMPEG_NAME = environ.get('FFMPEG_NAME', 'ffmpeg')
 
 # ============================ REQUIRED ================================
-if not (BOT_TOKEN := environ.get('BOT_TOKEN', '6499364659:AAHMmUxMWag28I9V_9YJBi8qaZWZ0VstGEk')):
+if not (BOT_TOKEN := environ.get('BOT_TOKEN', '')):
     LOGGER.error('BOT_TOKEN variable is missing! Exiting now')
     exit(1)
 
 bot_id = BOT_TOKEN.split(':', 1)[0]
 
-if DATABASE_URL := environ.get('DATABASE_URL', 'mongodb+srv://hello:hello@cluster0.vc2htx0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'):
+if DATABASE_URL := environ.get('DATABASE_URL', ''):
     if not DATABASE_URL.startswith('mongodb'):
         try:
             DATABASE_URL = b64decode(resub('ini|adalah|pesan|yang|sangat|rahasia', '', DATABASE_URL)).decode('utf-8')
@@ -139,9 +139,9 @@ if DATABASE_URL := environ.get('DATABASE_URL', 'mongodb+srv://hello:hello@cluste
             qbit_options = qbit_opt
             LOGGER.info('QBittorrent settings imported from database.')
         conn.close()
-        BOT_TOKEN = environ.get('BOT_TOKEN', '7588796776:AAFO4NRS0ptkUr8yMHUxdg8Kgy82B0ZcUlQ')
+        BOT_TOKEN = environ.get('BOT_TOKEN', '')
         bot_id = BOT_TOKEN.split(':', 1)[0]
-        if DATABASE_URL := environ.get('DATABASE_URL', 'mongodb+srv://hello:hello@cluster0.vc2htx0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'):
+        if DATABASE_URL := environ.get('DATABASE_URL', ''):
             if not DATABASE_URL.startswith('mongodb'):
                 try:
                     DATABASE_URL = b64decode(resub('ini|adalah|pesan|rahasia', '', DATABASE_URL)).decode('utf-8')
@@ -164,7 +164,7 @@ else:
     LOGGER.error('TELEGRAM_API variable is missing! Exiting now')
     exit(1)
 
-if not (TELEGRAM_HASH := environ.get('TELEGRAM_HASH', '6c3c6facf5598a4b318e138f8c407028')):
+if not (TELEGRAM_HASH := environ.get('TELEGRAM_HASH', '')):
     LOGGER.error('TELEGRAM_HASH variable is missing! Exiting now')
     exit(1)
 
